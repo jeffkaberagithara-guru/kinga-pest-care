@@ -1,0 +1,45 @@
+{
+  "name": "kinga-pest-care",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "og": "node scripts/generate-og.mjs",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,css,mjs}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json,css,mjs}\"",
+    "audit:contrast": "node scripts/audit-contrast.mjs",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run audit:contrast"
+  },
+  "dependencies": {
+    "lucide-react": "^1.55.0",
+    "motion": "^14.1.0",
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.12.0",
+    "eslint-config-next": "^16.4.0",
+    "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.4"
+  },
+  "allowScripts": {
+    "unrs-resolver@1.12.2": true,
+    "@tailwindcss/oxide@4.3.3": true,
+    "next@16.4.0": true,
+    "sharp@0.35.5": true
+  }
+}
