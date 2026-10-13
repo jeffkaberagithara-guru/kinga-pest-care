@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KINGA Pest Care">
+  <rect width="64" height="64" rx="14" fill="#153E32"/>
+  <path d="M32 10 47.5 15.7v13.4c0 10-6.4 18.7-15.5 21.9C22.9 47.7 16.5 39 16.5 29V15.7L32 10Z" fill="#F6F5EE"/>
+  <path d="M32 19.6v22.2" stroke="#153E32" stroke-width="3" stroke-linecap="round"/>
+  <path d="M32 25.6 25.8 29.2M32 25.6l6.2 3.6M32 32.6l-5.8 3.6M32 32.6l5.8 3.6" stroke="#B76445" stroke-width="3" stroke-linecap="round"/>
+</svg>
