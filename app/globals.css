@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   KINGA PEST CARE — DESIGN TOKENS
+   "Living Shield" — source of truth mirrors DESIGN.md §4–§10.
+   No raw hex values in components. Only semantic tokens are consumed by UI.
+   ========================================================================= */
+
+@theme {
+  /* --- Colour: primary (forest — protection, trust, expertise) --- */
+  --color-primary: #153e32;
+  --color-primary-hover: #103028;
+  --color-primary-strong: #0c251f;
+  --color-primary-soft: #e4ede2;
+
+  /* --- Colour: accent (electric citron — CTA + small highlights only) --- */
+  --color-accent: #d9f36a;
+  --color-accent-hover: #c9e751;
+  --color-accent-ink: #18241f; /* text ON citron — 12.6:1 */
+  --color-accent-deep: #4e6b14; /* citron-family used AS text on ivory — 5.3:1 */
+  --color-accent-on-dark: #d9f36a; /* citron on forest — 8.1:1 */
+
+  /* --- Colour: clay (warmth — category markers, small editorial detail) --- */
+  --color-clay: #b76445;
+  --color-clay-deep: #8f4a32; /* clay used AS text on ivory — 4.8:1 */
+
+  /* --- Colour: surfaces & ink --- */
+  --color-background: #f6f5ee; /* warm ivory canvas */
+  --color-surface: #ffffff;
+  --color-surface-2: #e4ede2; /* soft sage band */
+  --color-surface-3: #efeee4; /* quiet ivory band */
+  --color-text: #18241f; /* dark ink */
+  --color-text-secondary: #3c4a42;
+  --color-muted: #5c685f;
+  --color-border: #dde4da;
+  --color-border-strong: #c2ccc0;
+
+  /* --- Colour: status --- */
+  --color-success: #1f6b4a;
+  --color-success-soft: #e3f0e8;
+  --color-danger: #a4232b;
+  --color-danger-soft: #f7e6e4;
+
+  /* --- Focus (DESIGN.md §12) — forest on light surfaces --- */
+  --color-focus: #153e32;
+
+  /* --- Typography --- */
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Type scale (DESIGN.md §5.1) --- */
+  --text-display: clamp(2.5rem, 5.4vw, 4.5rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 800;
+
+  --text-h1: clamp(1.9rem, 3.1vw, 2.75rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h1--font-weight: 750;
+
+  --text-h2: clamp(1.5rem, 2.3vw, 2.05rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 700;
+
+  --text-h3: 1.1875rem;
+  --text-h3--line-height: 1.32;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 650;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-body-lg: 1.0625rem;
+  --text-body-lg--line-height: 1.7;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.55;
+
+  --text-nav: 0.9375rem;
+  --text-nav--font-weight: 500;
+  --text-button: 0.9375rem;
+  --text-button--font-weight: 600;
+
+  --text-caption: 0.6875rem;
+  --text-caption--line-height: 1.4;
+  --text-caption--letter-spacing: 0.16em;
+  --text-caption--font-weight: 600;
+
+  /* --- Geometry: soft, organic, restrained --- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-card: 14px;
+  --radius-panel: 20px;
+  --radius-pill: 999px;
+
+  /* --- Spacing rhythm --- */
+  --spacing-gutter: clamp(1rem, 4vw, 2.5rem);
+  --spacing-section: clamp(4rem, 8vw, 7rem);
+  --spacing-section-sm: clamp(2.75rem, 5vw, 4.5rem);
+
+  /* --- Elevation: soft and natural, never a coloured glow --- */
+  --shadow-lift: 0 1px 2px rgb(21 36 31 / 0.05), 0 12px 30px -14px rgb(21 36 31 / 0.22);
+  --shadow-panel: 0 24px 60px -32px rgb(16 33 28 / 0.4);
+  --shadow-overlay: 0 24px 60px -20px rgb(16 33 28 / 0.45);
+
+  /* --- Breakpoints --- */
+  --breakpoint-xs: 22.5rem;
+
+  /* --- Layout --- */
+  --container-site: 78rem;
+}
+
+/* ============================================================================
+   MOTION TOKENS (DESIGN.md §10)
+   ========================================================================= */
+:root {
+  --motion-fast: 150ms;
+  --motion-standard: 220ms;
+  --motion-emphasis: 380ms;
+  --motion-entrance: 620ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.28, 0.64, 1);
+
+  --header-h: 4.5rem;
+  --announce-h: 2.25rem;
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================= */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+
+  /* Focus on forest surfaces needs a light ring to stay visible. */
+  .on-dark :focus-visible {
+    outline-color: var(--color-accent-on-dark);
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  /* Screen-reader-only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+@layer components {
+  /* Page gutter + max width used by every full-width section */
+  .shell {
+    width: 100%;
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+  }
+
+  /* Eyebrow label: tracked out, uppercase */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  /* Animated underline for inline text links */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    transition: background-size var(--motion-standard) var(--ease-out);
+  }
+  .link-underline:hover {
+    background-size: 0% 1px;
+  }
+
+  /* Organic contour texture — a subtle topographic field used sparingly.
+     Pure CSS concentric rings; no raster asset, no external request. */
+  .texture-rings {
+    background-image:
+      repeating-radial-gradient(
+        circle at 18% 26%,
+        transparent 0,
+        transparent 26px,
+        rgb(21 62 50 / 0.045) 27px,
+        transparent 28px
+      ),
+      repeating-radial-gradient(
+        circle at 82% 78%,
+        transparent 0,
+        transparent 34px,
+        rgb(21 62 50 / 0.035) 35px,
+        transparent 36px
+      );
+  }
+
+  /* Keyframes for overlays. Short and single-purpose — no ambient loops. */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes panelInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes panelOutRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* ============================================================================
+   REDUCED MOTION (DESIGN.md §10.1)
+   Functionality identical; only movement removed.
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
