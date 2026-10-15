@@ -94,8 +94,14 @@ export function ContactForm({ deliveryConfigured = true }: { deliveryConfigured?
 
   const focusFirstError = (fieldErrorsMap: Record<string, string>) => {
     const first = fieldOrder.find((field) => fieldErrorsMap[field]);
-    if (first) {
-      document.getElementById(`field-${first}`)?.focus();
+    // Fields are addressed by `field-*` id; the radio group has no single id,
+    // so fall back to the first control that shares the field's `name`.
+    const target = first
+      ? (document.getElementById(`field-${first}`) ??
+        document.querySelector<HTMLElement>(`[name="${first}"]`))
+      : null;
+    if (target) {
+      target.focus();
     } else {
       summaryRef.current?.focus();
     }
@@ -424,7 +430,11 @@ export function ContactForm({ deliveryConfigured = true }: { deliveryConfigured?
           </Field>
         </div>
 
-        <fieldset className="sm:col-span-2">
+        <fieldset
+          className="sm:col-span-2"
+          aria-invalid={Boolean(errors.contactMethod)}
+          aria-describedby={errors.contactMethod ? "error-contactMethod" : undefined}
+        >
           <legend className="text-small font-semibold text-text">
             Preferred way to reply <span className="text-clay-deep">*</span>
           </legend>
