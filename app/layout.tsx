@@ -91,6 +91,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-KE" className={`${manrope.variable} ${dmSans.variable}`}>
       <body className="flex min-h-dvh flex-col">
+        {/*
+          Entrance animations render their hidden first frame inline
+          (opacity: 0) and only resolve once JavaScript runs. Without a
+          script, that content would stay invisible — so force the hidden
+          first frame visible. This is the only place inline CSS is emitted,
+          and it is scoped to exactly the elements Motion leaves hidden.
+        */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html:
+              '<style>[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}</style>',
+          }}
+        />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[var(--radius-sm)] focus:bg-primary focus:px-4 focus:py-2.5 focus:text-small focus:font-semibold focus:text-white"
