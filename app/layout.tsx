@@ -88,8 +88,16 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // `scroll-behavior: smooth` on <html> (globals.css) is deliberate for in-page
+  // anchors. The data attribute opts the element in, so the App Router still
+  // jumps instantly on route changes instead of animating them — Next.js warns
+  // if it is missing.
   return (
-    <html lang="en-KE" className={`${manrope.variable} ${dmSans.variable}`}>
+    <html
+      lang="en-KE"
+      className={`${manrope.variable} ${dmSans.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body className="flex min-h-dvh flex-col">
         {/*
           Entrance animations render their hidden first frame inline
