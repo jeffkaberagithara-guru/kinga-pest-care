@@ -5,6 +5,7 @@ import { Process } from "@/components/home/process";
 import { AmbientBand } from "@/components/home/ambient-band";
 import { Safety } from "@/components/home/safety";
 import { Contexts } from "@/components/home/contexts";
+import { Testimonials } from "@/components/home/testimonials";
 import { FaqSection } from "@/components/home/faq-section";
 import { RequestSection } from "@/components/home/request-section";
 
@@ -18,6 +19,7 @@ export default function HomePage() {
       <AmbientBand />
       <Safety />
       <Contexts />
+      <Testimonials />
       <FaqSection />
       <RequestSection />
     </>
