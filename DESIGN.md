@@ -202,6 +202,7 @@ service-icon map (`Bug`, `TreePine`, `BedDouble`, `Rat`, `Waves`, `Footprints`, 
 | `StepList`          | Shared numbered editorial list (specimen numbers + hairlines) used by home, about and service pages; reveal-staggered        |
 | `Safety`            | Sage band; honest prep/re-entry messaging + PCPB note                                                                        |
 | `Contexts`          | Residential vs commercial image panels                                                                                       |
+| `Testimonials`      | Renders **nothing** while `data/testimonials.ts` is empty; quote cards appear only once real, authorised reviews are added   |
 | `FaqAccordion`      | Button + labelled region, `aria-expanded`, animated height, reduced-motion aware                                             |
 | `ContactForm`       | Full validation, error summary, loading/disabled, honeypot, success/error/not-configured states                              |
 | `Footer`            | Deep forest; services, company, real contact details, regulator note                                                         |
@@ -309,7 +310,8 @@ Script-checked (`npm run verify`):
 - [x] Contrast computed from tokens and asserted — `scripts/audit-contrast.mjs` (18/18 pass)
 - [x] Type-check clean — `tsc --noEmit`
 - [x] Lint clean — `eslint`
-- [x] Unit tests for the shared validation schema — `vitest` (8 pass)
+- [x] Unit tests for validation, rate limiting, delivery, configuration data and structured data
+      — `vitest` (48 pass)
 - [x] Production build succeeds for all 19 routes — `next build`
 - [ ] Browser layout/overflow and reduced-motion audit at 360→1920px — **manual** (no browser
       automation installed in this environment; see README § Testing for the manual matrix)

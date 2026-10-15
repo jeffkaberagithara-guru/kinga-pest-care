@@ -39,18 +39,18 @@ npm run dev                  # http://localhost:3000
 
 Scripts:
 
-| Command                  | Purpose                                       |
-| ------------------------ | --------------------------------------------- |
-| `npm run dev`            | Development server                            |
-| `npm run build`          | Production build                              |
-| `npm start`              | Serve the production build                    |
-| `npm run lint`           | ESLint                                        |
-| `npm run typecheck`      | `tsc --noEmit`                                |
-| `npm test`               | Vitest unit tests                             |
-| `npm run audit:contrast` | Compute WCAG contrast from tokens and assert  |
-| `npm run og`             | Regenerate `public/og-cover.png` from the SVG |
-| `npm run verify`         | lint + typecheck + test + contrast            |
-| `npm run format`         | Prettier                                      |
+| Command                  | Purpose                                           |
+| ------------------------ | ------------------------------------------------- |
+| `npm run dev`            | Development server                                |
+| `npm run build`          | Production build                                  |
+| `npm start`              | Serve the production build                        |
+| `npm run lint`           | ESLint                                            |
+| `npm run typecheck`      | `tsc --noEmit`                                    |
+| `npm test`               | Vitest unit tests                                 |
+| `npm run audit:contrast` | Compute WCAG contrast from tokens and assert      |
+| `npm run og`             | Regenerate `public/og-cover.png` from the SVG     |
+| `npm run verify`         | lint + format:check + typecheck + test + contrast |
+| `npm run format`         | Prettier                                          |
 
 ---
 
@@ -222,8 +222,10 @@ Targets WCAG 2.2 AA. Implemented: semantic landmarks, one `h1` per page, real in
 elements, visible focus (forest on light, citron on forest), labelled form controls with
 `aria-invalid`/`aria-describedby`, a focusable `role="alert"` error summary, `role="status"`
 success, focus-trapped mobile dialog with `Esc` and focus restore, a route announcer,
-44px+ mobile targets, reduced-motion support, and a script-verified colour system.
-Automated checks do not replace manual keyboard and screen-reader testing.
+44px+ mobile targets, reduced-motion support, and a script-verified colour system. Entrance
+animations are progressive enhancement: a `noscript` rule reveals their hidden first frame, so
+every page is readable with JavaScript unavailable. Automated checks do not replace manual
+keyboard and screen-reader testing.
 
 ---
 
@@ -242,14 +244,14 @@ Automated checks do not replace manual keyboard and screen-reader testing.
 
 Commands run and their results:
 
-| Check                        | Command                  | Result                         |
-| ---------------------------- | ------------------------ | ------------------------------ |
-| Production build (19 routes) | `npm run build`          | ✅ pass                        |
-| Type check                   | `npm run typecheck`      | ✅ pass                        |
-| Lint                         | `npm run lint`           | ✅ pass (0 errors, 0 warnings) |
-| Unit tests (validation)      | `npm test`               | ✅ 8/8 pass                    |
-| Contrast audit               | `npm run audit:contrast` | ✅ 18/18 pass                  |
-| Runtime smoke test           | `curl` vs `next start`   | ✅ see below                   |
+| Check                                                                  | Command                  | Result                         |
+| ---------------------------------------------------------------------- | ------------------------ | ------------------------------ |
+| Production build (19 routes)                                           | `npm run build`          | ✅ pass                        |
+| Type check                                                             | `npm run typecheck`      | ✅ pass                        |
+| Lint                                                                   | `npm run lint`           | ✅ pass (0 errors, 0 warnings) |
+| Unit tests (validation, rate limit, delivery, config, structured data) | `npm test`               | ✅ 48/48 pass                  |
+| Contrast audit                                                         | `npm run audit:contrast` | ✅ 18/18 pass                  |
+| Runtime smoke test                                                     | `curl` vs `next start`   | ✅ see below                   |
 
 Runtime smoke test verified: CSP and security headers present; `POST /api/contact` returns
 `503 not_configured` when unconfigured (with fallback message); returns `422` with per-field
@@ -300,8 +302,8 @@ app/
   sitemap.ts robots.ts not-found.tsx icon.svg globals.css
 components/
   home/                 hero, trust-strip, services-overview, process,
-                        ambient-band, safety, contexts, faq-section,
-                        request-section
+                        ambient-band, safety, contexts, testimonials,
+                        faq-section, request-section
   contact/contact-form.tsx
   ui/                   button, section-heading, service-tile, service-icon,
                         step-list, faq-accordion, safety-note, page-header,
@@ -310,7 +312,7 @@ components/
   logo.tsx navbar.tsx mobile-menu.tsx mobile-action-bar.tsx
   announcement-bar.tsx route-announcer.tsx
 config/                 site.ts, services.ts, faqs.ts, process.ts, nav.ts, media.ts
-data/testimonials.ts    Empty by design
+data/testimonials.ts    Empty by design (section renders nothing)
 lib/                    cn.ts, validation.ts, rate-limit.ts, contact.ts
 scripts/                audit-contrast.mjs, generate-og.mjs
 public/                 logo SVGs, og-cover.*, img/*.jpg, media/*

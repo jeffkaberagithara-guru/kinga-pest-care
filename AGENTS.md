@@ -14,7 +14,7 @@ npm run typecheck        # tsc --noEmit
 npm test                 # vitest
 npm run audit:contrast   # WCAG contrast check from tokens
 npm run og               # regenerate public/og-cover.png
-npm run verify           # lint + typecheck + test + contrast (run before finishing)
+npm run verify           # lint + format:check + typecheck + test + contrast (run before finishing)
 ```
 
 ## Conventions
