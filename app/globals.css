@@ -243,34 +243,6 @@
         transparent 36px
       );
   }
-
-  /* Keyframes for overlays. Short and single-purpose — no ambient loops. */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes panelInRight {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes panelOutRight {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(100%);
-    }
-  }
 }
 
 /* ============================================================================
