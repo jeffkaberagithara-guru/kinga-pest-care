@@ -61,7 +61,7 @@ export function Hero() {
           className="lg:col-span-5"
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.985 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: reduce ? 0.2 : 0.85, delay: reduce ? 0 : 0.15, ease: easings }}
+          transition={{ duration: reduce ? 0.2 : 0.62, delay: reduce ? 0 : 0.12, ease: easings }}
         >
           <HeroPanel />
         </motion.div>
